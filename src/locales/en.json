@@ -1,0 +1,408 @@
+{
+  "app": {
+    "name": "MedConnect",
+    "fullName": "MedConnect Saudi",
+    "tagline": "Telemedicine consultation platform",
+    "skipToContent": "Skip to main content",
+    "demoBanner": "Demo mode: all doctors, appointments and prices shown are sample data, not real."
+  },
+  "nav": {
+    "main": "Main navigation",
+    "home": "Home",
+    "doctors": "Doctors",
+    "specialties": "Specialties",
+    "howItWorks": "How it works",
+    "about": "About",
+    "contact": "Contact",
+    "faq": "FAQ",
+    "privacy": "Privacy policy",
+    "terms": "Terms & conditions",
+    "patientSafety": "Patient safety",
+    "login": "Log in",
+    "register": "Sign up",
+    "dashboard": "Dashboard",
+    "logout": "Log out",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "account": "Account",
+    "portal": "Portal menu",
+    "breadcrumb": "Breadcrumb"
+  },
+  "common": {
+    "loading": "Loading…",
+    "retry": "Try again",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "submit": "Submit",
+    "close": "Close",
+    "search": "Search",
+    "viewAll": "View all",
+    "optional": "optional",
+    "required": "required",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "minutes": "{n} min",
+    "page": "Page {current} of {total}",
+    "pagination": "Pagination",
+    "notifications": "Notifications",
+    "dismiss": "Dismiss notification",
+    "learnMore": "Learn more"
+  },
+  "theme": {
+    "toggle": "Toggle theme",
+    "light": "Light theme",
+    "dark": "Dark theme"
+  },
+  "locale": {
+    "label": "Language",
+    "ar": "العربية",
+    "en": "English",
+    "switchTo": "التبديل إلى العربية"
+  },
+  "consultationType": {
+    "chat": "Text chat",
+    "video": "Video call"
+  },
+  "home": {
+    "seoTitle": "Consult your doctor from anywhere",
+    "seoDescription": "Connect with licensed doctors via chat or video call, and book your consultation easily and securely.",
+    "hero": {
+      "title": "Consult your doctor from anywhere",
+      "subtitle": "Connect with licensed doctors via chat or video call, and book your medical consultation easily and securely.",
+      "searchDoctor": "Find a doctor",
+      "howItWorks": "How does it work?",
+      "searchLabel": "Search by doctor name or specialty",
+      "searchPlaceholder": "e.g. Family medicine, Dermatology…"
+    },
+    "specialties": {
+      "title": "Medical specialties",
+      "subtitle": "Choose the specialty that fits your need"
+    },
+    "steps": {
+      "title": "How it works",
+      "s1": { "title": "Find a doctor", "desc": "Browse doctors by specialty, language and consultation type." },
+      "s2": { "title": "Book a slot", "desc": "Pick a convenient time from the available slots." },
+      "s3": { "title": "Start the consultation", "desc": "Talk to your doctor via chat or video call." },
+      "s4": { "title": "Follow up on your care", "desc": "See consultation notes and issued prescriptions in your account." }
+    },
+    "featured": {
+      "title": "Doctors on the platform",
+      "subtitle": "Meet some of the doctors available for consultation",
+      "empty": "No doctors to show right now."
+    },
+    "types": {
+      "title": "Consultation types",
+      "chat": "Message your doctor and share files and photos securely.",
+      "video": "A live video consultation with your doctor from your device."
+    },
+    "benefits": {
+      "title": "Why MedConnect?",
+      "b1": { "title": "Your data stays private", "desc": "Your medical information is shown only to those entitled to see it." },
+      "b2": { "title": "Doctor verification", "desc": "The verified badge appears only after professional licence details are reviewed." },
+      "b3": { "title": "Arabic and English", "desc": "A fully bilingual interface and doctors who speak multiple languages." },
+      "b4": { "title": "Clear pricing", "desc": "The consultation price is shown before booking, with no hidden fees." }
+    },
+    "faq": {
+      "title": "Frequently asked questions"
+    },
+    "safety": {
+      "title": "Your safety first",
+      "body": "Remote consultations are not a substitute for emergency care. If you have serious symptoms such as chest pain, difficulty breathing or loss of consciousness, seek emergency help immediately.",
+      "emergency": "In an emergency call 997 or 911"
+    }
+  },
+  "faq": {
+    "q1": { "q": "Is the platform suitable for emergencies?", "a": "No. In an emergency call 997 or 911, or go to the nearest emergency department." },
+    "q2": { "q": "How do I book a consultation?", "a": "Find a doctor, choose the consultation type and a convenient slot, then complete the booking and payment if the consultation is paid." },
+    "q3": { "q": "How do I know a doctor is verified?", "a": "The “Verified” badge appears on a doctor's profile only after the platform confirms it has reviewed their professional licence details." },
+    "q4": { "q": "Can I cancel an appointment?", "a": "You can cancel eligible appointments from your appointments page, according to the cancellation policy shown at booking." },
+    "q5": { "q": "Who can see my medical record?", "a": "Your treating doctor can see your medical information within the consultation. Pharmacies only see what is needed to dispense a prescription." }
+  },
+  "doctors": {
+    "seoTitle": "Find a doctor",
+    "seoDescription": "Search doctors by specialty, language, consultation type and price.",
+    "title": "Find a doctor",
+    "subtitle": "Use the filters to find the right doctor",
+    "searchLabel": "Doctor name",
+    "searchPlaceholder": "Search by doctor name",
+    "results": "Results: {count}",
+    "empty": {
+      "title": "No matching results",
+      "desc": "Try adjusting the filters or searching with different words."
+    },
+    "filters": {
+      "title": "Filters",
+      "show": "Show filters",
+      "specialty": "Specialty",
+      "consultationType": "Consultation type",
+      "language": "Doctor's language",
+      "price": "Price (SAR)",
+      "minPrice": "Minimum",
+      "maxPrice": "Maximum",
+      "availability": "Availability",
+      "any": "Any",
+      "today": "Available today",
+      "week": "Available this week",
+      "verifiedOnly": "Verified doctors only",
+      "reset": "Clear filters",
+      "apply": "Apply"
+    },
+    "card": {
+      "verified": "Verified",
+      "verifiedHint": "Professional licence details reviewed by the platform",
+      "languages": "Languages",
+      "from": "From {price}",
+      "viewProfile": "View profile",
+      "book": "Book appointment",
+      "nextAvailable": "Next available: {date}",
+      "noAvailability": "No upcoming availability",
+      "rating": "Rated {avg} out of 5 ({count} reviews)"
+    }
+  },
+  "doctorProfile": {
+    "about": "About the doctor",
+    "qualifications": "Qualifications",
+    "experience": "Professional experience",
+    "experienceYears": "Years of experience: {n}",
+    "present": "Present",
+    "languages": "Languages",
+    "consultationTypes": "Consultation types and prices",
+    "availability": "Available slots",
+    "selectType": "Consultation type",
+    "selectDate": "Choose a day",
+    "selectTime": "Choose a time",
+    "noSlots": "No available slots on this day.",
+    "timezoneNote": "All times are Riyadh time.",
+    "reviews": "Patient reviews",
+    "noReviews": "No published reviews yet.",
+    "book": "Continue booking",
+    "selectSlotFirst": "Choose a slot to continue",
+    "loginToBook": "Log in to complete your booking",
+    "notFound": "Doctor not found."
+  },
+  "specialties": {
+    "seoTitle": "Medical specialties",
+    "title": "Medical specialties",
+    "subtitle": "Browse the specialties available on the platform",
+    "doctorsCount": "Doctors: {count}",
+    "viewDoctors": "View doctors",
+    "empty": "No specialties available right now.",
+    "notFound": "Specialty not found."
+  },
+  "pages": {
+    "howItWorks": {
+      "title": "How it works",
+      "intro": "MedConnect connects patients with doctors through text or video consultations, with electronic prescriptions that can be dispensed at participating pharmacies where available."
+    },
+    "about": {
+      "title": "About us",
+      "body": "MedConnect is a Saudi telemedicine platform that aims to make it easier for patients to reach doctors safely and clearly, while respecting the privacy of health data."
+    },
+    "contact": {
+      "title": "Contact us",
+      "subtitle": "Send us your question and we will reply by email.",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "noMedical": "Please do not send medical information through this form.",
+      "success": "Your message has been sent."
+    },
+    "faq": { "title": "Frequently asked questions" },
+    "privacy": { "title": "Privacy policy" },
+    "terms": { "title": "Terms & conditions" },
+    "patientSafety": {
+      "title": "Patient safety",
+      "p1": "Remote consultations are suitable for non-emergency conditions only.",
+      "p2": "Tell your doctor about all medicines you take and any allergies you have.",
+      "p3": "Only use medicines according to an issued prescription and clear instructions.",
+      "p4": "If your condition worsens after the consultation, visit the nearest healthcare facility."
+    },
+    "legalPending": "The approved text for this page will be published after legal review."
+  },
+  "auth": {
+    "login": {
+      "seoTitle": "Log in",
+      "title": "Log in",
+      "subtitle": "Welcome back",
+      "identifier": "Mobile number or email",
+      "identifierHint": "e.g. 05XXXXXXXX",
+      "password": "Password",
+      "remember": "Remember me on this device",
+      "submit": "Log in",
+      "forgot": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "register": "Create one"
+    },
+    "register": {
+      "seoTitle": "Sign up",
+      "title": "Create a patient account",
+      "subtitle": "We only ask for what is needed to create your account.",
+      "name": "Full name",
+      "phone": "Mobile number",
+      "phoneHint": "We will send a verification code to this number",
+      "email": "Email",
+      "password": "Password",
+      "passwordHint": "At least 8 characters, including a letter and a number",
+      "passwordConfirmation": "Confirm password",
+      "acceptTerms": "I agree to the terms and conditions",
+      "acceptPrivacy": "I agree to the privacy policy and to the processing of my health data to provide the service",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "areYouDoctor": "Are you a doctor?",
+      "doctorLink": "Register as a doctor"
+    },
+    "doctorRegister": {
+      "seoTitle": "Doctor registration",
+      "title": "Join as a doctor",
+      "subtitle": "Create your account first, then complete professional verification from the doctor portal.",
+      "note": "You will not be able to provide consultations until your verification is approved."
+    },
+    "otp": {
+      "seoTitle": "Verify your mobile",
+      "title": "Enter the verification code",
+      "sentTo": "We sent a 6-digit code to {phone}",
+      "code": "Verification code",
+      "verify": "Verify",
+      "resend": "Resend code",
+      "resendIn": "You can resend in {s} seconds",
+      "resent": "A new code has been sent.",
+      "missingPhone": "There is no mobile number to verify. Please start again."
+    },
+    "mfa": {
+      "seoTitle": "Two-step verification",
+      "title": "Two-step verification",
+      "subtitleSms": "Enter the code sent to your mobile.",
+      "subtitleTotp": "Enter the code from your authenticator app.",
+      "code": "Verification code",
+      "submit": "Verify"
+    },
+    "forgot": {
+      "seoTitle": "Forgot password",
+      "title": "Recover your password",
+      "subtitle": "Enter your mobile number or email and we will send you a reset code.",
+      "submit": "Send code",
+      "sent": "If the account exists, you will receive reset instructions.",
+      "recovery": "Can't access your mobile or email? Contact support to recover your account."
+    },
+    "reset": {
+      "seoTitle": "Reset password",
+      "title": "Set a new password",
+      "password": "New password",
+      "submit": "Save password",
+      "success": "Your password has been changed. You can log in now.",
+      "invalidLink": "The reset link is invalid or has expired."
+    },
+    "logout": {
+      "title": "Log out",
+      "body": "Do you want to log out of your account?",
+      "confirm": "Log out",
+      "done": "You have been logged out."
+    },
+    "welcome": "Hello, {name}"
+  },
+  "validation": {
+    "required": "This field is required.",
+    "email": "Enter a valid email address.",
+    "phone": "Enter a valid Saudi mobile number starting with 05.",
+    "identifier": "Enter a valid Saudi mobile number or email address.",
+    "minLength": "Must be at least {min} characters.",
+    "maxLength": "Must be at most {max} characters.",
+    "passwordWeak": "Password must be at least 8 characters and include a letter and a number.",
+    "passwordMismatch": "Passwords do not match.",
+    "mustAccept": "You must accept to continue.",
+    "otp": "Enter a 6-digit code.",
+    "summary": "Please fix the errors in the form."
+  },
+  "errors": {
+    "validation": "Please check the information you entered.",
+    "unauthenticated": "Please log in to continue.",
+    "forbidden": "You don't have permission to access this content.",
+    "not_found": "The requested content was not found.",
+    "csrf": "Your session expired. Please try again.",
+    "rate_limited": "Too many attempts. Please wait a moment and try again.",
+    "server": "A server error occurred. Please try again later.",
+    "network": "Unable to connect. Check your internet connection.",
+    "cancelled": "The request was cancelled.",
+    "unknown": "An unexpected error occurred.",
+    "sessionExpired": "Your session has expired. Please log in again.",
+    "loadFailed": "Couldn't load data",
+    "notFoundTitle": "Page not found",
+    "notFoundDesc": "The page may have moved or the link is incorrect.",
+    "forbiddenTitle": "Not authorised",
+    "goHome": "Back to home"
+  },
+  "portal": {
+    "roles": {
+      "patient": "Patient portal",
+      "doctor": "Doctor portal",
+      "pharmacist": "Pharmacy portal",
+      "admin": "Admin console"
+    },
+    "nav": {
+      "dashboard": "Dashboard",
+      "profile": "Profile",
+      "appointments": "Appointments",
+      "consultations": "Consultations",
+      "messages": "Messages",
+      "medicalRecords": "Medical records",
+      "prescriptions": "Prescriptions",
+      "pharmacies": "Pharmacies",
+      "payments": "Payments",
+      "notifications": "Notifications",
+      "settings": "Settings",
+      "verification": "Verification",
+      "availability": "Availability",
+      "patients": "Patients",
+      "clinicalNotes": "Clinical notes",
+      "earnings": "Earnings",
+      "branches": "Branches",
+      "dispensing": "Dispensing",
+      "staff": "Staff",
+      "users": "Users",
+      "doctors": "Doctors",
+      "pendingDoctors": "Pending verifications",
+      "pharmaciesAdmin": "Pharmacies",
+      "specialties": "Specialties",
+      "refunds": "Refunds",
+      "settlements": "Settlements",
+      "reviews": "Reviews",
+      "complaints": "Complaints",
+      "auditLogs": "Audit logs",
+      "more": "More"
+    },
+    "comingSoon": {
+      "title": "In development",
+      "desc": "This page is part of a later development phase and will be available soon.",
+      "phase": "Phase {n}"
+    },
+    "dashboard": {
+      "welcome": "Hello, {name}",
+      "quickSearch": "Find a doctor",
+      "verificationStatus": "Professional verification status",
+      "noData": "Nothing to show yet."
+    },
+    "doctorStatus": {
+      "draft": "Not submitted yet",
+      "submitted": "Submitted",
+      "under_review": "Under review",
+      "more_info_required": "More information required",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "suspended": "Suspended"
+    },
+    "doctorNotApproved": "You will not be able to provide consultations until your professional verification is approved."
+  },
+  "footer": {
+    "about": "A Saudi telemedicine platform connecting patients, doctors and pharmacies.",
+    "platform": "Platform",
+    "legal": "Legal",
+    "support": "Support",
+    "rights": "© {year} MedConnect. All rights reserved.",
+    "emergency": "Not for emergencies — in an emergency call 997 or 911."
+  }
+}
