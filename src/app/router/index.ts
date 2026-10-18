@@ -1,10 +1,10 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router'
 import { useAuthStore } from '@/stores/auth'
 import { createAuthGuard } from './guards'
 import { routes } from './routes'
 
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: import.meta.env.VITE_HASH_ROUTER ? createWebHashHistory() : createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, saved) {
     if (saved) return saved
