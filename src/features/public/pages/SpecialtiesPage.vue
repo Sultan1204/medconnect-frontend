@@ -28,7 +28,7 @@ const specialties = useAsyncData((signal) => catalogApi.specialties({ signal }),
           <span class="flex size-12 items-center justify-center rounded-xl bg-primary-soft text-primary"><SpecialtyIcon :icon="s.icon" class="size-6" /></span>
           <h2 class="heading-3">{{ s.name }}</h2>
           <p v-if="s.description" class="text-sm text-fg-muted">{{ s.description }}</p>
-          <p class="mt-auto text-sm font-medium text-primary">{{ t('specialties.doctorsCount', { count: s.doctors_count }) }}</p>
+          <p v-if="s.doctors_count !== null" class="mt-auto text-sm font-medium text-primary">{{ t('specialties.doctorsCount', { count: s.doctors_count }) }}</p>
         </RouterLink>
       </li>
     </ul>

@@ -151,7 +151,7 @@ function continueBooking() {
           <ul v-else class="flex flex-col divide-y divide-border">
             <li v-for="r in reviews.data.value.data" :key="r.id" class="py-3">
               <div class="flex items-center justify-between text-sm">
-                <span class="font-semibold">{{ r.author_display_name }}</span>
+                <span class="font-semibold">{{ r.author_display_name || t('doctorProfile.anonymousPatient') }}</span>
                 <span class="text-fg-muted">{{ f.date(r.created_at) }}</span>
               </div>
               <RatingStars class="mt-1" :rating="{ average: r.rating, count: 1 }" />

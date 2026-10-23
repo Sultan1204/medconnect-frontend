@@ -32,6 +32,8 @@ const submit = form.handleSubmit(async (data) => {
   const result = await auth.login(data)
   if (result.status === 'authenticated') {
     await router.replace(redirect.value ?? auth.homePath)
+  } else if (result.status === 'mfa_enrollment_required') {
+    await router.push({ path: '/mfa/setup', query: redirect.value ? { redirect: redirect.value } : {} })
   } else if (result.status === 'mfa_required') {
     await router.push({ path: '/mfa', query: redirect.value ? { redirect: redirect.value } : {} })
   } else {

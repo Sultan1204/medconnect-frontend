@@ -84,10 +84,22 @@
     },
     "steps": {
       "title": "How it works",
-      "s1": { "title": "Find a doctor", "desc": "Browse doctors by specialty, language and consultation type." },
-      "s2": { "title": "Book a slot", "desc": "Pick a convenient time from the available slots." },
-      "s3": { "title": "Start the consultation", "desc": "Talk to your doctor via chat or video call." },
-      "s4": { "title": "Follow up on your care", "desc": "See consultation notes and issued prescriptions in your account." }
+      "s1": {
+        "title": "Find a doctor",
+        "desc": "Browse doctors by specialty, language and consultation type."
+      },
+      "s2": {
+        "title": "Book a slot",
+        "desc": "Pick a convenient time from the available slots."
+      },
+      "s3": {
+        "title": "Start the consultation",
+        "desc": "Talk to your doctor via chat or video call."
+      },
+      "s4": {
+        "title": "Follow up on your care",
+        "desc": "See consultation notes and issued prescriptions in your account."
+      }
     },
     "featured": {
       "title": "Doctors on the platform",
@@ -101,10 +113,22 @@
     },
     "benefits": {
       "title": "Why MedConnect?",
-      "b1": { "title": "Your data stays private", "desc": "Your medical information is shown only to those entitled to see it." },
-      "b2": { "title": "Doctor verification", "desc": "The verified badge appears only after professional licence details are reviewed." },
-      "b3": { "title": "Arabic and English", "desc": "A fully bilingual interface and doctors who speak multiple languages." },
-      "b4": { "title": "Clear pricing", "desc": "The consultation price is shown before booking, with no hidden fees." }
+      "b1": {
+        "title": "Your data stays private",
+        "desc": "Your medical information is shown only to those entitled to see it."
+      },
+      "b2": {
+        "title": "Doctor verification",
+        "desc": "The verified badge appears only after professional licence details are reviewed."
+      },
+      "b3": {
+        "title": "Arabic and English",
+        "desc": "A fully bilingual interface and doctors who speak multiple languages."
+      },
+      "b4": {
+        "title": "Clear pricing",
+        "desc": "The consultation price is shown before booking, with no hidden fees."
+      }
     },
     "faq": {
       "title": "Frequently asked questions"
@@ -116,11 +140,26 @@
     }
   },
   "faq": {
-    "q1": { "q": "Is the platform suitable for emergencies?", "a": "No. In an emergency call 997 or 911, or go to the nearest emergency department." },
-    "q2": { "q": "How do I book a consultation?", "a": "Find a doctor, choose the consultation type and a convenient slot, then complete the booking and payment if the consultation is paid." },
-    "q3": { "q": "How do I know a doctor is verified?", "a": "The “Verified” badge appears on a doctor's profile only after the platform confirms it has reviewed their professional licence details." },
-    "q4": { "q": "Can I cancel an appointment?", "a": "You can cancel eligible appointments from your appointments page, according to the cancellation policy shown at booking." },
-    "q5": { "q": "Who can see my medical record?", "a": "Your treating doctor can see your medical information within the consultation. Pharmacies only see what is needed to dispense a prescription." }
+    "q1": {
+      "q": "Is the platform suitable for emergencies?",
+      "a": "No. In an emergency call 997 or 911, or go to the nearest emergency department."
+    },
+    "q2": {
+      "q": "How do I book a consultation?",
+      "a": "Find a doctor, choose the consultation type and a convenient slot, then complete the booking and payment if the consultation is paid."
+    },
+    "q3": {
+      "q": "How do I know a doctor is verified?",
+      "a": "The “Verified” badge appears on a doctor's profile only after the platform confirms it has reviewed their professional licence details."
+    },
+    "q4": {
+      "q": "Can I cancel an appointment?",
+      "a": "You can cancel eligible appointments from your appointments page, according to the cancellation policy shown at booking."
+    },
+    "q5": {
+      "q": "Who can see my medical record?",
+      "a": "Your treating doctor can see your medical information within the consultation. Pharmacies only see what is needed to dispense a prescription."
+    }
   },
   "doctors": {
     "seoTitle": "Find a doctor",
@@ -182,7 +221,8 @@
     "book": "Continue booking",
     "selectSlotFirst": "Choose a slot to continue",
     "loginToBook": "Log in to complete your booking",
-    "notFound": "Doctor not found."
+    "notFound": "Doctor not found.",
+    "anonymousPatient": "Anonymous patient"
   },
   "specialties": {
     "seoTitle": "Medical specialties",
@@ -212,9 +252,15 @@
       "noMedical": "Please do not send medical information through this form.",
       "success": "Your message has been sent."
     },
-    "faq": { "title": "Frequently asked questions" },
-    "privacy": { "title": "Privacy policy" },
-    "terms": { "title": "Terms & conditions" },
+    "faq": {
+      "title": "Frequently asked questions"
+    },
+    "privacy": {
+      "title": "Privacy policy"
+    },
+    "terms": {
+      "title": "Terms & conditions"
+    },
     "patientSafety": {
       "title": "Patient safety",
       "p1": "Remote consultations are suitable for non-emergency conditions only.",
@@ -303,7 +349,17 @@
       "confirm": "Log out",
       "done": "You have been logged out."
     },
-    "welcome": "Hello, {name}"
+    "welcome": "Hello, {name}",
+    "mfaSetup": {
+      "seoTitle": "Set up two-step verification",
+      "title": "Set up two-step verification",
+      "intro": "Your role requires an authenticator app. Add the key below to an app such as Google Authenticator, then enter the 6-digit code it shows.",
+      "keyLabel": "Setup key",
+      "openApp": "Open in authenticator app",
+      "confirm": "Confirm and continue",
+      "recoveryIntro": "Two-step verification is on. Save these recovery codes somewhere safe. Each works once if you lose access to your app, and they are shown only now.",
+      "continue": "I have saved them, continue"
+    }
   },
   "validation": {
     "required": "This field is required.",

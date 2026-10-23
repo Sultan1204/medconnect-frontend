@@ -24,6 +24,7 @@ const authRoutes: RouteRecordRaw[] = [
   { path: '/register', name: 'register', component: () => import('@/features/auth/pages/RegisterPatientPage.vue'), meta: { guestOnly: true } },
   { path: '/register/doctor', name: 'register-doctor', component: () => import('@/features/auth/pages/RegisterDoctorPage.vue'), meta: { guestOnly: true } },
   { path: '/verify-phone', name: 'verify-phone', component: () => import('@/features/auth/pages/OtpVerifyPage.vue') },
+  { path: '/mfa/setup', name: 'mfa-setup', component: () => import('@/features/auth/pages/MfaSetupPage.vue') },
   { path: '/mfa', name: 'mfa', component: () => import('@/features/auth/pages/MfaPage.vue'), meta: { guestOnly: true } },
   { path: '/forgot-password', name: 'forgot-password', component: () => import('@/features/auth/pages/ForgotPasswordPage.vue'), meta: { guestOnly: true } },
   { path: '/reset-password', name: 'reset-password', component: () => import('@/features/auth/pages/ResetPasswordPage.vue'), meta: { guestOnly: true } },

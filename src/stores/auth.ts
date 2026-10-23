@@ -15,9 +15,9 @@ export const PORTAL_HOME: Record<Role, string> = {
 }
 
 /**
- * Holds the authenticated user as reported by the backend (GET /auth/me).
+ * Holds the authenticated user as reported by the backend (GET /me).
  * Roles here drive UX only (navigation, guards); every authorisation decision is enforced by the API.
- * The session itself lives in an HttpOnly cookie — nothing sensitive is persisted client-side.
+ * The bearer token lives in sessionStorage (see services/api/session.ts); it is cleared when the tab closes.
  */
 export const useAuthStore = defineStore('auth', () => {
   const user = ref<User | null>(null)
@@ -28,6 +28,8 @@ export const useAuthStore = defineStore('auth', () => {
   const mfaChallenge = ref<{ challenge_id: string; channel: 'sms' | 'totp' } | null>(null)
   /** Phone awaiting OTP verification after registration/login (memory only). */
   const pendingPhone = ref<string | null>(null)
+  /** True between a password/OTP step that requires authenticator enrolment and its completion. */
+  const mfaEnrollmentPending = ref(false)
 
   const isAuthenticated = computed(() => user.value !== null)
   const roles = computed<Role[]>(() => user.value?.roles ?? [])
@@ -69,6 +71,7 @@ export const useAuthStore = defineStore('auth', () => {
     const result = await authApi.login(payload)
     if (result.status === 'authenticated') setUser(result.user)
     else if (result.status === 'mfa_required') mfaChallenge.value = { challenge_id: result.challenge_id, channel: result.channel }
+    else if (result.status === 'mfa_enrollment_required') mfaEnrollmentPending.value = true
     else pendingPhone.value = result.phone
     return result
   }
@@ -94,6 +97,7 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = null
     mfaChallenge.value = null
     pendingPhone.value = null
+    mfaEnrollmentPending.value = false
     loaded.value = true
   }
 
@@ -102,6 +106,7 @@ export const useAuthStore = defineStore('auth', () => {
     loaded,
     mfaChallenge,
     pendingPhone,
+    mfaEnrollmentPending,
     isAuthenticated,
     roles,
     primaryRole,

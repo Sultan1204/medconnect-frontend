@@ -79,7 +79,7 @@ export function toDoctorProfile(d: DoctorFixture, locale: string, nextAvailable:
 }
 
 /** Demo accounts. Password for all: Demo1234 — OTP / MFA code: 123456. */
-export const userFixtures: Array<User & { password: string }> = [
+export const userFixtures: Array<User & { id: number; password: string }> = [
   { id: 1, name: 'مريض تجريبي', email: 'patient@demo.test', phone: '+966500000001', roles: ['patient'], locale: 'ar', phone_verified_at: '2026-01-01T00:00:00Z', mfa_enabled: false, password: 'Demo1234' },
   { id: 2, name: 'د. تجريبي — ريم العتيبي', email: 'doctor@demo.test', phone: '+966500000002', roles: ['doctor'], locale: 'ar', phone_verified_at: '2026-01-01T00:00:00Z', mfa_enabled: false, doctor_status: 'approved', password: 'Demo1234' },
   { id: 3, name: 'طبيب قيد المراجعة', email: 'pending@demo.test', phone: '+966500000003', roles: ['doctor'], locale: 'ar', phone_verified_at: '2026-01-01T00:00:00Z', mfa_enabled: false, doctor_status: 'under_review', password: 'Demo1234' },

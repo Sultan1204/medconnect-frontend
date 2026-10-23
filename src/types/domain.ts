@@ -4,6 +4,9 @@
  * /api/v1 endpoints exist: `npm run api:types` (see README).
  */
 
+/** Backend ids are UUID strings; the offline demo data uses numbers. */
+export type Id = string | number
+
 export type Role = 'patient' | 'doctor' | 'pharmacist' | 'admin'
 
 export type ConsultationType = 'chat' | 'video'
@@ -15,7 +18,7 @@ export interface Money {
 }
 
 export interface User {
-  id: number
+  id: Id
   name: string
   email: string | null
   phone: string
@@ -30,12 +33,13 @@ export interface User {
 export type DoctorVerificationStatus = 'draft' | 'submitted' | 'under_review' | 'more_info_required' | 'approved' | 'rejected' | 'suspended'
 
 export interface Specialty {
-  id: number
+  id: Id
   slug: string
   name: string
   description: string | null
   icon: string | null
-  doctors_count: number
+  /** Null when the API does not report a count. */
+  doctors_count: number | null
 }
 
 export interface ConsultationOffer {
@@ -50,7 +54,7 @@ export interface Rating {
 }
 
 export interface DoctorSummary {
-  id: number
+  id: Id
   name: string
   title: string | null
   avatar_url: string | null
@@ -78,7 +82,7 @@ export interface AvailabilitySlot {
 }
 
 export interface Review {
-  id: number
+  id: Id
   rating: number
   comment: string | null
   created_at: string

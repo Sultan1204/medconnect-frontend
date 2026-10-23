@@ -1,33 +1,28 @@
 import axios, { type AxiosInstance, type InternalAxiosRequestConfig } from 'axios'
 import { env } from '@/config/env'
 import { toApiError } from './errors'
+import { session } from './session'
 
 declare module 'axios' {
   interface AxiosRequestConfig {
-    /** Do not trigger the global "session expired" handler on 401 (e.g. the initial /auth/me probe). */
+    /** Do not trigger the global "session expired" handler on 401 (e.g. the initial /me probe, sign-in). */
     skipAuthHandler?: boolean
+    /** Send this token instead of the stored session token (MFA challenge / enrolment steps). */
+    bearer?: string
     /** Internal retry bookkeeping. */
-    _csrfRetried?: boolean
     _networkRetried?: boolean
   }
 }
 
 /**
- * Central API client. Authentication uses Laravel Sanctum SPA (cookie) auth:
- * an HttpOnly session cookie plus the XSRF-TOKEN cookie echoed back as X-XSRF-TOKEN.
- * No auth token is ever stored in JS-accessible storage.
+ * Central API client. The API uses bearer tokens (see ./session.ts), so no cookies and
+ * no CSRF handshake are involved and cross-origin deployment only needs CORS.
  */
 export const http: AxiosInstance = axios.create({
   baseURL: `${env.apiBaseUrl}${env.apiPrefix}`,
-  withCredentials: true,
-  withXSRFToken: true,
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
+  withCredentials: false,
   timeout: 20_000,
-  headers: {
-    Accept: 'application/json',
-    'X-Requested-With': 'XMLHttpRequest',
-  },
+  headers: { Accept: 'application/json' },
 })
 
 let currentLocale = 'ar'
@@ -41,13 +36,10 @@ export function setUnauthenticatedHandler(handler: () => void) {
   onUnauthenticated = handler
 }
 
-/** Fetches a fresh CSRF cookie from Sanctum. Required before the first state-changing request. */
-export async function ensureCsrfCookie(): Promise<void> {
-  await http.get('/sanctum/csrf-cookie', { baseURL: env.apiBaseUrl })
-}
-
 http.interceptors.request.use((config: InternalAxiosRequestConfig) => {
   config.headers.set('Accept-Language', currentLocale)
+  const token = config.bearer ?? session.token
+  if (token) config.headers.set('Authorization', `Bearer ${token}`)
   return config
 })
 
@@ -61,12 +53,6 @@ http.interceptors.response.use(
     const status: number | undefined = error?.response?.status
 
     if (config) {
-      // CSRF token mismatch / expired: refresh the cookie once and replay.
-      if (status === 419 && !config._csrfRetried) {
-        config._csrfRetried = true
-        await ensureCsrfCookie()
-        return http.request(config)
-      }
       // Transient network failure: retry idempotent requests only, once.
       const method = (config.method ?? 'get').toLowerCase()
       if (!error.response && error.code !== 'ERR_CANCELED' && SAFE_METHODS.has(method) && !config._networkRetried) {
@@ -74,7 +60,10 @@ http.interceptors.response.use(
         await wait(600)
         return http.request(config)
       }
-      if (status === 401 && !config.skipAuthHandler) onUnauthenticated?.()
+      if (status === 401 && !config.skipAuthHandler) {
+        session.clear()
+        onUnauthenticated?.()
+      }
     }
     return Promise.reject(toApiError(error))
   },

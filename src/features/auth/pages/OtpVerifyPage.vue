@@ -38,6 +38,12 @@ const { pause, resume } = useIntervalFn(() => {
 const sending = ref(false)
 async function send(initial = false) {
   if (!phone.value || sending.value) return
+  if (initial) {
+    // The code was already sent when the account was created or the sign-in was attempted.
+    cooldown.value = 60
+    resume()
+    return
+  }
   sending.value = true
   try {
     const { resend_available_in } = await authApi.sendOtp(phone.value, 'phone_verification')
@@ -54,8 +60,13 @@ async function send(initial = false) {
 onMounted(() => void send(true))
 
 const submit = form.handleSubmit(async ({ code }) => {
-  const { user } = await authApi.verifyOtp(phone.value!, code, 'phone_verification')
+  const { user, mfaEnrollmentRequired } = await authApi.verifyOtp(phone.value!, code, 'phone_verification')
   auth.pendingPhone = null
+  if (mfaEnrollmentRequired) {
+    auth.mfaEnrollmentPending = true
+    await router.replace({ path: '/mfa/setup', query: route.query.redirect ? { redirect: String(route.query.redirect) } : {} })
+    return
+  }
   if (user) auth.setUser(user)
   await router.replace(safeRedirect(route.query.redirect) ?? auth.homePath)
 })

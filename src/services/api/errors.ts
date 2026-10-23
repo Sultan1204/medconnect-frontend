@@ -20,6 +20,8 @@ export class ApiError extends Error {
     /** Field errors from a Laravel 422 response, keyed by field name. */
     public readonly fieldErrors: Record<string, string[]> = {},
     public readonly retryAfterSeconds: number | null = null,
+    /** Stable machine-readable code from the API error envelope (e.g. `invalid_credentials`). */
+    public readonly code: string | null = null,
   ) {
     super(message)
     this.name = 'ApiError'
@@ -50,14 +52,21 @@ export function toApiError(error: unknown): ApiError {
     if (error.code === 'ERR_CANCELED') return new ApiError('cancelled', 'Request cancelled')
     if (!error.response) return new ApiError('network', error.message || 'Network error')
     const { status, data, headers } = error.response
-    const body = (data ?? {}) as { message?: unknown; errors?: unknown }
-    const message = typeof body.message === 'string' ? body.message : `HTTP ${status}`
+    // API envelope: { error: { code, message, details?: { fields } } }. Plain Laravel
+    // { message, errors } bodies are still understood as a fallback.
+    const body = (data ?? {}) as {
+      error?: { code?: unknown; message?: unknown; details?: { fields?: unknown } }
+      message?: unknown
+      errors?: unknown
+    }
+    const env = body.error
+    const message = typeof env?.message === 'string' ? env.message : typeof body.message === 'string' ? body.message : `HTTP ${status}`
+    const rawFields = env?.details?.fields ?? body.errors
     const fieldErrors =
-      status === 422 && body.errors && typeof body.errors === 'object'
-        ? (body.errors as Record<string, string[]>)
-        : {}
+      status === 422 && rawFields && typeof rawFields === 'object' ? (rawFields as Record<string, string[]>) : {}
     const retryAfter = Number(headers?.['retry-after'])
-    return new ApiError(kindForStatus(status), message, status, fieldErrors, Number.isFinite(retryAfter) ? retryAfter : null)
+    const code = typeof env?.code === 'string' ? env.code : null
+    return new ApiError(kindForStatus(status), message, status, fieldErrors, Number.isFinite(retryAfter) ? retryAfter : null, code)
   }
   return new ApiError('unknown', error instanceof Error ? error.message : 'Unknown error')
 }
