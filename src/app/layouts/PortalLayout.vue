@@ -9,6 +9,7 @@ import type { Role } from '@/types/domain'
 import { useAuthStore } from '@/stores/auth'
 import { useToastStore } from '@/stores/toast'
 import AppLogo from '@/components/layout/AppLogo.vue'
+import StepUpDialog from '@/features/app/common/StepUpDialog.vue'
 import LanguageSwitcher from '@/components/layout/LanguageSwitcher.vue'
 import ThemeToggle from '@/components/layout/ThemeToggle.vue'
 import AppAvatar from '@/components/ui/AppAvatar.vue'
@@ -109,6 +110,7 @@ async function confirmLogout() {
 
       <main id="main-content" tabindex="-1" class="flex-1 px-4 py-6 pb-28 focus:outline-none sm:px-6 lg:px-8 lg:pb-8">
         <slot />
+        <StepUpDialog />
       </main>
     </div>
 

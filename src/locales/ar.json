@@ -429,7 +429,10 @@
       "reviews": "التقييمات",
       "complaints": "الشكاوى",
       "auditLogs": "سجل التدقيق",
-      "more": "المزيد"
+      "more": "المزيد",
+      "contactMessages": "رسائل التواصل",
+      "dataRequests": "طلبات البيانات",
+      "guardianLinks": "روابط الوصاية"
     },
     "comingSoon": {
       "title": "قيد التطوير",

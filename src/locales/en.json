@@ -429,7 +429,10 @@
       "reviews": "Reviews",
       "complaints": "Complaints",
       "auditLogs": "Audit logs",
-      "more": "More"
+      "more": "More",
+      "contactMessages": "Contact messages",
+      "dataRequests": "Data requests",
+      "guardianLinks": "Guardian links"
     },
     "comingSoon": {
       "title": "In development",

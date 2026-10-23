@@ -30,21 +30,89 @@ const authRoutes: RouteRecordRaw[] = [
   { path: '/reset-password', name: 'reset-password', component: () => import('@/features/auth/pages/ResetPasswordPage.vue'), meta: { guestOnly: true } },
 ].map((r) => ({ ...r, meta: { ...r.meta, layout: 'auth' as const } }))
 
-/** Pages implemented so far; every other portal route renders the phase placeholder. */
-const implemented: Partial<Record<Role, Record<string, RouteRecordRaw['component']>>> = {
+const live = import.meta.env.VITE_API_MODE === 'http'
+/** Real-API pages (used when VITE_API_MODE=http); in mock mode the earlier placeholders/dashboards remain. */
+const app = {
+  patient: {
+    dashboard: () => import('@/features/app/patient/DashboardPage.vue'),
+    appointments: () => import('@/features/app/common/AppointmentsPage.vue'),
+    consultations: () => import('@/features/app/common/ConsultationsListPage.vue'),
+    messages: () => import('@/features/app/common/ConsultationsListPage.vue'),
+    'medical-records': () => import('@/features/app/patient/MedicalRecordsPage.vue'),
+    prescriptions: () => import('@/features/app/patient/PrescriptionsPage.vue'),
+    pharmacies: () => import('@/features/app/common/BranchesPage.vue'),
+    payments: () => import('@/features/app/patient/PaymentsPage.vue'),
+    complaints: () => import('@/features/app/patient/ComplaintsPage.vue'),
+    notifications: () => import('@/features/app/common/NotificationsPage.vue'),
+    profile: () => import('@/features/app/patient/ProfilePage.vue'),
+    settings: () => import('@/features/app/common/SettingsPage.vue'),
+  },
+  doctor: {
+    dashboard: () => import('@/features/app/doctor/DashboardPage.vue'),
+    verification: () => import('@/features/app/doctor/VerificationPage.vue'),
+    availability: () => import('@/features/app/doctor/AvailabilityPage.vue'),
+    appointments: () => import('@/features/app/common/AppointmentsPage.vue'),
+    consultations: () => import('@/features/app/common/ConsultationsListPage.vue'),
+    patients: () => import('@/features/app/doctor/PatientsPage.vue'),
+    'clinical-notes': () => import('@/features/app/common/ConsultationsListPage.vue'),
+    prescriptions: () => import('@/features/app/common/ConsultationsListPage.vue'),
+    earnings: () => import('@/features/app/doctor/EarningsPage.vue'),
+    notifications: () => import('@/features/app/common/NotificationsPage.vue'),
+    profile: () => import('@/features/app/doctor/ProfilePage.vue'),
+    settings: () => import('@/features/app/common/SettingsPage.vue'),
+  },
+  pharmacist: {
+    dashboard: () => import('@/features/app/pharmacy/DashboardPage.vue'),
+    prescriptions: () => import('@/features/app/pharmacy/DispensingPage.vue'),
+    dispensing: () => import('@/features/app/pharmacy/DispensingPage.vue'),
+    branches: () => import('@/features/app/common/BranchesPage.vue'),
+    staff: () => import('@/features/app/pharmacy/StaffPage.vue'),
+    notifications: () => import('@/features/app/common/NotificationsPage.vue'),
+    profile: () => import('@/features/app/pharmacy/ProfilePage.vue'),
+    settings: () => import('@/features/app/common/SettingsPage.vue'),
+  },
+  admin: {
+    dashboard: () => import('@/features/app/admin/DashboardPage.vue'),
+    users: () => import('@/features/app/admin/UsersPage.vue'),
+    patients: () => import('@/features/app/admin/UsersPage.vue'),
+    doctors: () => import('@/features/app/admin/DoctorsPage.vue'),
+    'doctors/pending': () => import('@/features/app/admin/DoctorsPage.vue'),
+    pharmacies: () => import('@/features/app/admin/PharmaciesPage.vue'),
+    specialties: () => import('@/features/app/admin/SpecialtiesPage.vue'),
+    appointments: () => import('@/features/app/admin/ListPage.vue'),
+    consultations: () => import('@/features/app/admin/ListPage.vue'),
+    payments: () => import('@/features/app/admin/PaymentsPage.vue'),
+    refunds: () => import('@/features/app/admin/PaymentsPage.vue'),
+    settlements: () => import('@/features/app/admin/SettlementsPage.vue'),
+    reviews: () => import('@/features/app/admin/ReviewsPage.vue'),
+    complaints: () => import('@/features/app/admin/ComplaintsPage.vue'),
+    notifications: () => import('@/features/app/common/NotificationsPage.vue'),
+    'audit-logs': () => import('@/features/app/admin/ListPage.vue'),
+    contact: () => import('@/features/app/admin/ListPage.vue'),
+    'data-requests': () => import('@/features/app/admin/ListPage.vue'),
+    'guardian-links': () => import('@/features/app/admin/ListPage.vue'),
+    settings: () => import('@/features/app/admin/SettingsPage.vue'),
+  },
+} as Record<Role, Record<string, RouteRecordRaw['component']>>
+
+const mockImplemented: Partial<Record<Role, Record<string, RouteRecordRaw['component']>>> = {
   patient: { dashboard: () => import('@/features/patients/pages/PatientDashboardPage.vue') },
   doctor: { dashboard: () => import('@/features/doctors/pages/DoctorDashboardPage.vue') },
 }
+const implemented = live ? app : mockImplemented
 
-/** Detail routes listed in the specification, rendered as placeholders until their phase. */
-const detailRoutes: Partial<Record<Role, Array<{ path: string; phase: number; approvedDoctor?: boolean }>>> = {
+/** Detail routes listed in the specification. */
+const detailRoutes: Partial<Record<Role, Array<{ path: string; phase: number; approvedDoctor?: boolean; component?: RouteRecordRaw['component'] }>>> = {
   patient: [
-    { path: 'book/:doctorId', phase: 4 },
-    { path: 'appointments/:id', phase: 4 },
-    { path: 'consultations/:id', phase: 6 },
+    { path: 'book/:doctorId', phase: 4, component: () => import('@/features/app/patient/BookPage.vue') },
+    { path: 'appointments/:id', phase: 4, component: () => import('@/features/app/common/AppointmentDetailPage.vue') },
+    { path: 'consultations/:id', phase: 6, component: () => import('@/features/app/common/ConsultationRoom.vue') },
   ],
-  doctor: [{ path: 'consultations/:id', phase: 6, approvedDoctor: true }],
-  pharmacist: [{ path: 'prescriptions/:id', phase: 7 }],
+  doctor: [
+    { path: 'appointments/:id', phase: 5, approvedDoctor: true, component: () => import('@/features/app/common/AppointmentDetailPage.vue') },
+    { path: 'consultations/:id', phase: 6, approvedDoctor: true, component: () => import('@/features/app/common/ConsultationRoom.vue') },
+  ],
+  pharmacist: [{ path: 'prescriptions/:id', phase: 7, component: () => import('@/features/app/pharmacy/DispenseDetailPage.vue') }],
 }
 
 const portalRoutes: RouteRecordRaw[] = (Object.keys(PORTALS) as Role[]).flatMap((role) => {
@@ -59,7 +127,7 @@ const portalRoutes: RouteRecordRaw[] = (Object.keys(PORTALS) as Role[]).flatMap(
   for (const d of detailRoutes[role] ?? []) {
     children.push({
       path: `${portal.base}/${d.path}`,
-      component: ComingSoon,
+      component: live && d.component ? d.component : ComingSoon,
       meta: { ...base, phase: d.phase, requiresApprovedDoctor: d.approvedDoctor },
     })
   }
