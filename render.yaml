@@ -1,0 +1,20 @@
+# Render Blueprint - TEMPORARY tester deployment of the MedConnect web app (static site).
+services:
+  - type: web
+    name: medconnect-frontend
+    runtime: static
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: VITE_API_MODE
+        value: http
+      - key: VITE_API_PREFIX
+        value: /api/v1
+      - key: VITE_API_BASE_URL
+        sync: false   # the backend URL, e.g. https://medconnect-backend.onrender.com (no trailing slash)
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
