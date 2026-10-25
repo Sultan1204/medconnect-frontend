@@ -1,5 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 import { PORTALS } from '@/app/navigation'
+import { env } from '@/config/env'
 import type { Role } from '@/types/domain'
 
 const ComingSoon = () => import('@/features/portal/pages/ComingSoonPage.vue')
@@ -30,7 +31,7 @@ const authRoutes: RouteRecordRaw[] = [
   { path: '/reset-password', name: 'reset-password', component: () => import('@/features/auth/pages/ResetPasswordPage.vue'), meta: { guestOnly: true } },
 ].map((r) => ({ ...r, meta: { ...r.meta, layout: 'auth' as const } }))
 
-const live = import.meta.env.VITE_API_MODE === 'http'
+const live = !env.isMock
 /** Real-API pages (used when VITE_API_MODE=http); in mock mode the earlier placeholders/dashboards remain. */
 const app = {
   patient: {
